@@ -1,6 +1,5 @@
 import React, { FC, FormEvent, useState } from "react";
 import { AnalyzingScreen } from "./Analyzing";
-import axios from "axios";
 
 type ClaimFormProps = {
   setRodentResult: React.Dispatch<React.SetStateAction<string>>;
@@ -16,12 +15,11 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //@ts-expect-error i'll try and fix this one later sorry mom
     const description = event?.target[2]?.value;
-    //@ts-expect-error i'll try and fix this one later sorry mom
-    setUsername(event.target[3].value);
+    const name = event.target[3].value;
+    setUsername(name);
 
-    if (!username || !description) {
+    if (!name || !description) {
       setUsernameError(username ? "" : "REQUIRED FIELD!");
       setDescriptionError(description ? "" : "VERY REQUIRED FIELD!!");
       return;
@@ -29,7 +27,6 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
 
     const prompt =
       "A rat from New York City. The description of the rat is " +
-      //@ts-expect-error i'll try and fix this one later sorry mom
       event.target[2].value;
 
     const options = {
@@ -52,12 +49,12 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
     };
 
     //Uncomment the below fetch when you want to make the API call
-    /*await fetch("https://api.monsterapi.ai/v1/generate/txt2img", options)
+    await fetch("https://api.monsterapi.ai/v1/generate/txt2img", options)
       .then((response) => response.json())
       .then((response) => {
         setRatID(response.process_id);
       })
-      .catch((err) => console.error(err));*/
+      .catch((err) => console.error(err));
 
     setIsLoading(true);
   };

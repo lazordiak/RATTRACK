@@ -1,5 +1,6 @@
 import LoadingSpin from "react-loading-spin";
 import axios from "axios";
+import { useEffect } from "react";
 
 type AnalyzingProps = {
   setRodentResult: React.Dispatch<React.SetStateAction<string>>;
@@ -33,15 +34,13 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
     };
 
     try {
-      const response = await axios.post("http://localhost:4001/", postBody);
-      console.log("response from post");
-      console.log(response.data);
+      await axios.post("http://localhost:4001/", postBody);
     } catch (err) {
       console.error(`Error with posting rat data: ${err}`);
     }
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     const postBody = {
       user: username,
       //gotta change this to the stuff that is uh returned
@@ -51,16 +50,14 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
 
     const postData = async () => {
       try {
-        const response = await axios.post("http://localhost:4001/", postBody);
-        console.log("response from post");
-        console.log(response.data);
+        await axios.post("http://localhost:4001/", postBody);
       } catch (err) {
         console.error(`Error with posting rat data: ${err}`);
       }
     };
 
     postData();
-  }, []);*/
+  });
 
   setTimeout(async () => {
     await fetch(fetchUrl, getOptions)
