@@ -7,6 +7,8 @@ type ClaimFormProps = {
 };
 
 const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
+  const [usernameError, setUsernameError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
   const [uploadPreview, setUploadPreview] = useState("");
   const [ratID, setRatID] = useState("");
   const [username, setUsername] = useState("");
@@ -14,9 +16,16 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    //@ts-expect-error i'll try and fix this one later sorry mom
+    const description = event?.target[2]?.value;
     //@ts-expect-error i'll try and fix this one later sorry mom
     setUsername(event.target[3].value);
+
+    if (!username || !description) {
+      setUsernameError(username ? "" : "REQUIRED FIELD!");
+      setDescriptionError(description ? "" : "VERY REQUIRED FIELD!!");
+      return;
+    }
 
     const prompt =
       "A rat from New York City. The description of the rat is " +
@@ -55,10 +64,9 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
 
   const imageUploaded = (e: FormEvent<HTMLInputElement>) => {
     if (!e.currentTarget.files) return;
-    const file = e.currentTarget.files[0];
+    const file = e.currentTarget.files[0] as Blob;
     console.log("New image uploaded:", e.currentTarget.files[0]);
     const objectUrl = URL.createObjectURL(file);
-    console.log(objectUrl);
     setUploadPreview(objectUrl);
   };
 
@@ -98,6 +106,12 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
             style={{ width: "100%" }}
           />
         </label>
+        {descriptionError && (
+          <>
+            <br />
+            <span style={{ color: "red" }}>{descriptionError}</span>
+          </>
+        )}
         <br />
         <label>
           Please input your name or a pseuodonym; this will show in the RODENT'S
@@ -105,6 +119,12 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
           <br />
           <input type="text" name="time" />
         </label>
+        {usernameError && (
+          <>
+            <br />
+            <span style={{ color: "red" }}>{usernameError}</span>
+          </>
+        )}
         <br />
         <label htmlFor="img">Upload your photo of the rodent:</label>
         <input

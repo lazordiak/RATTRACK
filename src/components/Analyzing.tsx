@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import LoadingSpin from "react-loading-spin";
 import axios from "axios";
 
@@ -9,8 +8,8 @@ type AnalyzingProps = {
 };
 
 export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
-  setRodentResult,
   ratID,
+  setRodentResult,
   username,
 }) => {
   const fetchID = ratID || "726d5d2a-bb91-419f-b36b-7ca45b2ba3e8";
@@ -26,18 +25,32 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
     },
   };
 
-  const postBody = {
-    user: username,
-    //gotta change this to the stuff that is uh returned
-    picLink: fetchID,
-    uploadedRat: "",
+  const postRatData = async (username: string, generatedRatLink: string) => {
+    const postBody = {
+      user: username,
+      picLink: generatedRatLink,
+      uploadedRat: "",
+    };
+
+    try {
+      const response = await axios.post("http://localhost:4001/", postBody);
+      console.log("response from post");
+      console.log(response.data);
+    } catch (err) {
+      console.error(`Error with posting rat data: ${err}`);
+    }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
+    const postBody = {
+      user: username,
+      //gotta change this to the stuff that is uh returned
+      picLink: fetchID,
+      uploadedRat: "",
+    };
+
     const postData = async () => {
       try {
-        console.log("postbody");
-        console.log(postBody);
         const response = await axios.post("http://localhost:4001/", postBody);
         console.log("response from post");
         console.log(response.data);
@@ -47,16 +60,19 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
     };
 
     postData();
-  }, []);
+  }, []);*/
 
-  /*setTimeout(async () => {
+  setTimeout(async () => {
     await fetch(fetchUrl, getOptions)
       .then((res) => res.json())
-      .then((response) => {
+      .then(async (response) => {
+        //heres where the magic happens
+        await postRatData(username, response?.result?.output[0]);
+        console.log("rats posted.");
         setRodentResult(response?.result?.output[0]);
       })
       .catch((err) => console.error(err));
-  }, 15000);*/
+  }, 15000);
 
   return (
     <div>

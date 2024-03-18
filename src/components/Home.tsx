@@ -34,6 +34,7 @@ export const Home: FC<HomeScreenProps> = ({ setWindow }) => {
           src="https://cdn.glitch.global/2005a23a-0f59-4a7d-90a8-c2710002b041/rat.jpeg?v=1708805533186"
           className="illustration"
           alt="Illustration click to change language"
+          style={{ borderRadius: "5%", borderStyle: "solid" }}
         />
       </div>
       <marquee behavior="scroll" direction="left" scrollamount="5">

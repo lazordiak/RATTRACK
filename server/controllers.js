@@ -6,15 +6,12 @@ const retrieveAllRats = async (req, res) => {
     .from("rats")
     .then((ratData) => {
       console.log(ratData);
-      res.json({ msg: "This is CORS-enabled for all origins!" });
-      //res.json(ratData);
+      res.json(ratData);
     })
     .catch((err) => res.json({ message: `Error retrieving rats! ${err}` }));
 };
 
 const submitIncident = (req, res) => {
-  console.log("we posted, here is, req");
-  console.log(req.body);
   knex("rats")
     .insert({
       picLink: req.body.picLink,

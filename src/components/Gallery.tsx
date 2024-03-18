@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+type Rat = {
+  id: number;
+  picLink: string;
+  user: string;
+};
+
 export const Gallery = () => {
-  const [rats, setRats] = useState(null);
+  const [rats, setRats] = useState<Rat[] | null>(null);
   console.log(rats);
 
   useEffect(() => {
@@ -10,22 +16,10 @@ export const Gallery = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:4001/");
-        console.log(response);
+        setRats(response.data);
       } catch (err) {
         console.error(`Error getting dem rats: ${err}`);
       }
-      /*fetch("/")
-        .then((response) => {
-          console.log("raw response");
-          console.log(response);
-          console.log("json");
-          console.log(response.json());
-          console.log("body??");
-          console.log(response.body);
-          //@ts-expect-error i'll try and fix this one later sorry mom
-          setRats(response.body);
-        })
-        .catch((error) => console.error(`Error getting those rats ${error}`));*/
     };
 
     fetchData();
@@ -33,10 +27,38 @@ export const Gallery = () => {
 
   return (
     <div>
-      <div>RODENT'S ROGUE GALLERY</div>
+      <div
+        style={{
+          marginTop: "12px",
+          fontWeight: "bold",
+          fontSize: "48px",
+        }}
+      >
+        RODENT'S ROGUE GALLERY
+      </div>
       {rats && (
-        <div>
-          <p>Rats achieved.</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {rats.map((rat) => (
+            <div key={rat.id} style={{ width: "100%", marginTop: "12px" }}>
+              <img
+                style={{
+                  width: "100%",
+                  borderRadius: "5%",
+                  borderStyle: "solid",
+                }}
+                src={rat.picLink}
+              />
+              <span style={{ fontStyle: "italic" }}>
+                Reported by:{" "}
+                <span style={{ fontWeight: "bold" }}>{rat.user}</span>
+              </span>
+            </div>
+          ))}
         </div>
       )}
     </div>

@@ -5,7 +5,7 @@ import HomeScreen from "./screens/HomeScreen.tsx";
 import "./styles/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <>
     <iframe
       src="https://cdn.glitch.global/0d639cac-8ea0-47b1-8e34-3d142e1c8124/silence.mp3?v=1708893548908"
       allow="autoplay"
@@ -37,5 +37,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </div>
       <div>(really) developed by schuyler, shuang, yan, wes...</div>
     </footer>
-  </React.StrictMode>
+  </>
 );
