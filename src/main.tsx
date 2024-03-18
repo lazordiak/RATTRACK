@@ -18,9 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       />
     </audio>
     <main role="main" className="wrapper">
-      <marquee behavior="scroll" direction="left" scrollamount="5">
+      <div className="moving-text">
         <a href="">🚨 Rat Incident Report System! 🚨</a>
-      </marquee>
+      </div>
       <div className="content">
         <HomeScreen />
       </div>

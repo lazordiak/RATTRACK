@@ -1,4 +1,6 @@
 import { FC } from "react";
+// Import and apply CSS stylesheet
+import "../styles/styles.css";
 
 type HomeScreenProps = {
   setWindow: (window: string) => void;
@@ -37,11 +39,9 @@ export const Home: FC<HomeScreenProps> = ({ setWindow }) => {
           style={{ borderRadius: "5%", borderStyle: "solid" }}
         />
       </div>
-      <marquee behavior="scroll" direction="left" scrollamount="5">
-        <a href="">
-          🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTED🚨WANTEDW🚨WANTED🚨WANTED🚨
-        </a>
-      </marquee>
+      <span className="moving-text">
+        <a href="">🚨WANTED🚨WANTED🚨WANTED🚨</a>
+      </span>
       <div className="instructions">
         <h2>How it works:</h2>
 
