@@ -54,7 +54,7 @@ export const Gallery = () => {
     console.log("aight leggo");
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4001/rats");
+        const response = await axios.get("https://rattrack.onrender.com/rats");
         setRats(response.data);
       } catch (err) {
         console.error(`Error getting dem rats: ${err}`);

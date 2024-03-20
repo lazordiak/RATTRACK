@@ -34,7 +34,7 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
     };
 
     try {
-      await axios.post("http://localhost:4001/rats", postBody);
+      await axios.post("https://rattrack.onrender.com/rats", postBody);
     } catch (err) {
       console.error(`Error with posting rat data: ${err}`);
     }
