@@ -12,7 +12,17 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "img-src": [
+        "'self'",
+        "https://processed-model-result.s3.us-east-2.amazonaws.com",
+      ],
+    },
+  })
+);
 
 app.use("/", express.static("dist"));
 
