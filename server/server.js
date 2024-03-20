@@ -6,7 +6,7 @@ import cors from "cors";
 import { ratRouter } from "./ratRoutes.js";
 
 const app = express();
-const port = 4001;
+const port = 10000 || 4000;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,7 +14,9 @@ app.use(bodyParser.json());
 app.use(compression());
 app.use(helmet());
 
-app.use("/", ratRouter);
+app.use("/", express.static("dist"));
+
+app.use("/rats", ratRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
