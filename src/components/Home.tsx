@@ -1,6 +1,7 @@
 import { FC } from "react";
 // Import and apply CSS stylesheet
 import "../styles/styles.css";
+import rat from "../assets/rat.jpeg";
 
 type HomeScreenProps = {
   setWindow: (window: string) => void;
@@ -33,7 +34,7 @@ export const Home: FC<HomeScreenProps> = ({ setWindow }) => {
       </div>
       <div>
         <img
-          src="../assets/rat.jpeg"
+          src={rat}
           className="illustration"
           alt="A picture of a rat on the NYC subway."
           style={{ borderRadius: "5%", borderStyle: "solid" }}

@@ -5,7 +5,7 @@ import "./styles/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
-    <iframe
+    {/*<iframe
       src="https://cdn.glitch.global/0d639cac-8ea0-47b1-8e34-3d142e1c8124/silence.mp3?v=1708893548908"
       allow="autoplay"
       id="audio"
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         src="https://cdn.glitch.global/0d639cac-8ea0-47b1-8e34-3d142e1c8124/lawandorder.mp3?v=1708893377280"
         type="audio/mp3"
       />
-    </audio>
+</audio>*/}
     <main role="main" className="wrapper">
       <div className="moving-text">
         <a href="">🚨 Rat Incident Report System! 🚨</a>
