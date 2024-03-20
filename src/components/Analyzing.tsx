@@ -63,9 +63,7 @@ export const AnalyzingScreen: React.FC<AnalyzingProps> = ({
     await fetch(fetchUrl, getOptions)
       .then((res) => res.json())
       .then(async (response) => {
-        //heres where the magic happens
         await postRatData(username, response?.result?.output[0]);
-        console.log("rats posted.");
         setRodentResult(response?.result?.output[0]);
       })
       .catch((err) => console.error(err));

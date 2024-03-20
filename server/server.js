@@ -6,7 +6,7 @@ import cors from "cors";
 import { ratRouter } from "./ratRoutes.js";
 
 const app = express();
-const port = 10000 || 4000;
+const port = 4000;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

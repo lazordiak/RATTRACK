@@ -48,10 +48,8 @@ const RatList: FC<RatGallery> = ({ rats }) => {
 
 export const Gallery = () => {
   const [rats, setRats] = useState<Rat[] | null>(null);
-  console.log(rats);
 
   useEffect(() => {
-    console.log("aight leggo");
     const fetchData = async () => {
       try {
         const response = await axios.get("https://rattrack.onrender.com/rats");

@@ -26,7 +26,7 @@ knexInstance.schema
         })
         .then(() => {
           // Log success message
-          console.log("Table 'Rats' created");
+          ("Table 'Rats' created");
         })
         .catch((error) => {
           console.error(`There was an error creating table: ${error}`);
@@ -35,7 +35,7 @@ knexInstance.schema
   })
   .then(() => {
     // Log success message
-    console.log("All done wit the schema shit");
+    console.log("All done wit the schema");
   })
   .catch((error) => {
     console.error(`There was an error setting up the database: ${error}`);

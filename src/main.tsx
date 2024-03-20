@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       />
 </audio>*/}
     <main role="main" className="wrapper">
-      <div className="moving-text">
+      <div style={{ justifyContent: "center", display: "flex" }}>
         <a href="">🚨 Rat Incident Report System! 🚨</a>
       </div>
       <div className="content">

@@ -62,7 +62,6 @@ const ClaimForm: FC<ClaimFormProps> = ({ setRodentResult }) => {
   const imageUploaded = (e: FormEvent<HTMLInputElement>) => {
     if (!e.currentTarget.files) return;
     const file = e.currentTarget.files[0] as Blob;
-    console.log("New image uploaded:", e.currentTarget.files[0]);
     const objectUrl = URL.createObjectURL(file);
     setUploadPreview(objectUrl);
   };
